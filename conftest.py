@@ -5,7 +5,7 @@ import requests
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options as ChromeOptions
 from selenium.webdriver.firefox.options import Options as FirefoxOptions
-from data import API_LOGIN_URL, API_USER_URL
+from config import API_LOGIN_URL, API_USER_URL
 from helpers import register_new_user_and_return_email_password
 
 # Добавляем корневую директорию в PYTHONPATH
