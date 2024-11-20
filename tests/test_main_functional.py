@@ -2,6 +2,7 @@ import time
 import pytest
 import allure
 from data import *
+from config import *
 from helpers import *
 from pages.main_page import MainPage
 from pages.orders_feed_page import OrdersFeedPage

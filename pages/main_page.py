@@ -1,5 +1,6 @@
 import allure
 from data import *
+from config import *
 from pages.base_page import BasePage
 from locators.main_page_locators import MainPageLocators
 

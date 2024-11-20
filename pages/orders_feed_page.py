@@ -2,6 +2,7 @@ import allure
 from pages.base_page import BasePage
 from locators.orders_feed_page_locators import OrdersFeedPageLocators
 import time
+from config import *
 
 class OrdersFeedPage(BasePage):
 

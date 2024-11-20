@@ -1,7 +1,7 @@
 import allure
 from pages.base_page import BasePage
 from locators.orders_history_page_locators import OrderHistoryPageLocators
-
+from config import *
 
 class OrderHistoryPage(BasePage):
 

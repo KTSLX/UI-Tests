@@ -1,7 +1,7 @@
 import allure
 from pages.base_page import BasePage
 from locators.reset_password_page_locators import ResetPasswordPageLocators
-
+from config import *
 
 class ResetPasswordPage(BasePage):
 

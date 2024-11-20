@@ -1,10 +1,7 @@
 import allure
 from pages.base_page import BasePage
 from locators.login_page_locators import LoginPageLocators
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from conftest import driver
+
 
 class LoginPage(BasePage):
 
