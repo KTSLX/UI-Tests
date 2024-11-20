@@ -58,7 +58,6 @@ class MainPage(BasePage):
         ingredient_locator = self.format_locator(MainPageLocators.BASE_INGREDIENT_BUTTON, ingredient)
         element = self.find_element_with_wait_presence(ingredient_locator)
         target = self.find_element_with_wait_visibility(MainPageLocators.BASKET_CONSTRUCTOR)
-#        self.drag_and_drop_ingredient(element, target)
         self.drag_and_drop_with_js(element, target)
 
     @allure.step('Добавление ингредиентов в заказ')

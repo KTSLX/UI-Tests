@@ -1,14 +1,15 @@
 import os
 import sys
-
-# Добавляем корневую директорию в PYTHONPATH
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 import pytest
+import requests
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options as ChromeOptions
 from selenium.webdriver.firefox.options import Options as FirefoxOptions
-from data import *
+from data import API_LOGIN_URL, API_USER_URL
+from helpers import register_new_user_and_return_email_password
 
+# Добавляем корневую директорию в PYTHONPATH
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 @pytest.fixture(params=['chrome', 'firefox'])
 def driver(request):
@@ -25,3 +26,31 @@ def driver(request):
 
     yield driver
     driver.quit()
+
+
+@pytest.fixture
+def register_user():
+    """
+    Регистрирует нового пользователя, возвращает данные пользователя и токен,
+    удаляет пользователя после завершения теста.
+    """
+    user = register_new_user_and_return_email_password()
+    payload = {
+        'email': user[0],
+        'password': user[1],
+        'name': user[2]
+    }
+    login_response = requests.post(API_LOGIN_URL, data=payload)
+    token = login_response.json().get('accessToken')
+    if not token:
+        raise RuntimeError("Failed to fetch access token during user registration.")
+
+    yield {
+        'email': user[0],
+        'password': user[1],
+        'name': user[2],
+        'token': token
+    }
+
+    # Удаляем пользователя после завершения теста
+    requests.delete(API_USER_URL, headers={'Authorization': token})

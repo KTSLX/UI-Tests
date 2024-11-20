@@ -5,22 +5,11 @@ from data import *
 from helpers import *
 from pages.main_page import MainPage
 from pages.orders_feed_page import OrdersFeedPage
-from conftest import driver
+from conftest import driver, register_user
 
 
 
 class TestMainFunctional:
-
-    @classmethod
-    def setup_class(cls):
-        cls.user = register_new_user_and_return_email_password()
-        cls.payload = {
-            'email': cls.user[0],
-            'password': cls.user[1],
-            'name': cls.user[2]
-        }
-        login_response = requests.post(API_LOGIN_URL, data=cls.payload)
-        cls.user_token = login_response.json()['accessToken']
 
     @allure.title('Проверка перехода по клику на кнопку "Конструктор"')
     @allure.description('Выполняется клик на "Конструктор" со страницы авторизации и проверяется заголовок страницы.')
@@ -33,7 +22,7 @@ class TestMainFunctional:
 
     @allure.title('Проверка перехода по клику на кнопку "Лента заказов"')
     @allure.description('Выполняется клик на кнопку "Лента заказов" и проверяется заголовок страницы.')
-    def test_enter_in_order_feed_from_main_page(self, driver):
+    def test_enter_in_order_feed_from_main_page(self, driver, register_user):
         main_page = MainPage(driver)
         orders_feed_page = OrdersFeedPage(driver)
         main_page.open_url(MAIN_URL)
@@ -68,9 +57,9 @@ class TestMainFunctional:
         sauce_counter = int(main_page.get_counter_value(INGREDIENTS[1]))
         filling_counter = int(main_page.get_counter_value(INGREDIENTS[2]))
         main_page.add_ingredients()
-        assert int(main_page.get_counter_value(INGREDIENTS[0])) == 2 * (bun_counter + 1) \
-               and int(main_page.get_counter_value(INGREDIENTS[1])) == sauce_counter + 1 \
-               and int(main_page.get_counter_value(INGREDIENTS[2])) == filling_counter + 1
+        assert int(main_page.get_counter_value(INGREDIENTS[0])) == 2 * (bun_counter + 1)
+        assert int(main_page.get_counter_value(INGREDIENTS[1])) == sauce_counter + 1
+        assert int(main_page.get_counter_value(INGREDIENTS[2])) == filling_counter + 1
 
     @allure.title('Проверка оформления заказа залогиненным пользователем')
     @allure.description('Выполняется авторизация, оформление заказа и проверяется открытие окна подтверждения заказа.')
@@ -81,7 +70,3 @@ class TestMainFunctional:
         main_page.click_to_button_enter_account()
         main_page.set_order()
         assert EXPECTED_OPEN_WINDOW_CLASS in main_page.get_class_order_confirm_window()
-
-    @classmethod
-    def teardown_class(cls):
-        requests.delete(API_USER_URL, headers={'Authorization': cls.user_token})

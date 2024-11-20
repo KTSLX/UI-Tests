@@ -77,7 +77,6 @@ class BasePage:
         time.sleep(0.5)# Отпускаем элемент
         actions.perform()  # Исполняем действия
 
-    #        ActionChains(self.driver).drag_and_drop(element, target).perform()
 
     def authorization(self, argument):
         self.driver.execute_script("window.localStorage.setItem('accessToken', arguments[0]);", argument)
