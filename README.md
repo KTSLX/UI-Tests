@@ -1,32 +1,32 @@
-##  Дипломный проект. Задание 3: UI тесты
+##  Diploma project. Task 3: UI tests
 
-### Автотесты для проверки программы заказа бургеров в Stellar Burgers
+### Automated tests for Stellar Burgers ordering system
 
-### Использованный стек технологий
+### Technology stack:
 
 * Pytest
 * Selenium
 * Requests
 * Allure
 
-### Реализованные сценарии
+### Implemented Scenarios:
 
-Созданы UI тесты по тематике: `Проверка основного функционала`, `Раздел «Лента заказов»`, `Восстановление пароля`
-, `Личный кабинет `.
+UI tests: `Main ordering scenario`, `Orders Feed`, `Password recovery`
+, `My Profile`.
 
-### Структура проекта
+### Project structure
 
-- `Diplom_3` - проект, содержащий тесты и вспомогательные папки.
-- `tests` - пакет, содержащий тесты, разделенные по классам: `test_main_functional.py`, `test_orders_feed.py`
+- `Diploma_3` - project, containing tests and support modules.
+- `tests` - a folder, containing tests, divided by classes: `test_main_functional.py`, `test_orders_feed.py`
   , `test_password_recovery.py`, `test_personal_page.py`.
 
-### Запуск автотестов
+### Launching the tests:
 
-**Установка зависимостей**
+**Installing requirements**
 
 > `$ pip install -r requirements.txt`
 
-**Запуск автотестов из корня проекта `Diplom_3` и создание HTML-отчета в Allure**
+**Launching the tests from `Diploma_3` directory and generation of Allure report summary**
 
 > `pytest tests\ --alluredir=allure_results`
 > `allure serve allure_results`
