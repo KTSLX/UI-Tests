@@ -1,4 +1,4 @@
-##  Diploma project. Task 3: UI tests
+##  Task 3: UI tests
 
 ### Automated tests for Stellar Burgers ordering system
 
@@ -11,14 +11,12 @@
 
 ### Implemented Scenarios:
 
-UI tests: `Main ordering scenario`, `Orders Feed`, `Password recovery`
-, `My Profile`.
+UI tests: `Main ordering scenario`, `Orders Feed`, `Password recovery`, `My Profile`.
 
 ### Project structure
 
 - `Diploma_3` - project, containing tests and support modules.
-- `tests` - a folder, containing tests, divided by classes: `test_main_functional.py`, `test_orders_feed.py`
-  , `test_password_recovery.py`, `test_personal_page.py`.
+- `tests` - a folder, containing tests, divided by classes: `test_main_functional.py`, `test_orders_feed.py`, `test_password_recovery.py`, `test_personal_page.py`.
 
 ### Launching the tests:
 
